@@ -37,11 +37,11 @@ mq.open();
 ```js
 var AMQP = require('afrostream-node-amqp');
 var mq = new AMQP('amqp://localhost');
-mq.drain({exchangeName: "exchange", queueName: "queue"});
 mq.on('message', function (message) {
   console.log('[INFO]: [MQ]: message received !');
   //
   // Do what you want here
   //
 });
+mq.drain({exchangeName: "exchange", queueName: "queue"});
 ```
