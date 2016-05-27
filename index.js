@@ -106,7 +106,7 @@ AMQP.prototype.reopen = function () {
   return this;
 };
 
-AMQP.prototype.drain(function (options) {
+AMQP.prototype.drain = function (options) {
   if (!options ||
       !options.exchangeName || !options.queueName) {
     throw new Error('missing exchange/queue name');
@@ -138,6 +138,6 @@ AMQP.prototype.drain(function (options) {
     }
   });
   this.open();
-});
+};
 
 module.exports = AMQP;
