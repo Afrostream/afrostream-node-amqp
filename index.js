@@ -118,17 +118,17 @@ AMQP.prototype.drain = function (options) {
 
   // CHANNEL OPEN => DRAIN
   this.on('channel.opened', function () {
-    mq.channel.assertExchange(exchangeName, 'fanout', { durable: true });
-    mq.channel.assertQueue(queueName, { durable: true });
-    mq.channel.bindQueue(queueName, exchangeName);
-    mq.channel.consume(queueName, function (message) {
+    that.channel.assertExchange(exchangeName, 'fanout', { durable: true });
+    that.channel.assertQueue(queueName, { durable: true });
+    that.channel.bindQueue(queueName, exchangeName);
+    that.channel.consume(queueName, function (message) {
       if (!that.silent) {
         console.log('[INFO]: [AMQP]: message = ' + String(message.content));
       }
-      mq.channel.ack(message);
+      that.channel.ack(message);
       try {
         const unserialized = JSON.parse(String(message.content));
-        mq.emit('message', unserialized);
+        that.emit('message', unserialized);
       } catch (e) {
         console.log('[ERROR]: [AMQP]: cannot parse message ' + String(message.content));
       }
