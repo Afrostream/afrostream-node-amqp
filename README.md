@@ -12,7 +12,7 @@ high level functionnality over amqplib :
 ```js
 // creating mq
 var AMQP = require('afrostream-node-amqp');
-var mq = new AMQP('amqp://localhost');
+var mq = new AMQP({endPoint: 'amqp://localhost'});
 
 // CHANNEL OPEN => DRAIN
 mq.on('channel.opened', function () {
@@ -36,7 +36,7 @@ mq.open();
 
 ```js
 var AMQP = require('afrostream-node-amqp');
-var mq = new AMQP('amqp://localhost');
+var mq = new AMQP({endPoint: 'amqp://localhost'});
 mq.on('message', function (message) {
   console.log('[INFO]: [MQ]: message received !');
   //
